@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-
+import JGProgressHUD
 
 class ViewController: UIViewController {
     
@@ -17,8 +17,15 @@ class ViewController: UIViewController {
         //button.backgroundColor = .yellow
         //Auto Layout için gerekli kısıtları kabul etsin diye false yaptık.
         //button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(buttonAddPhotoPressed), for: .touchUpInside)
         return button
     }()
+    
+    @objc fileprivate func buttonAddPhotoPressed (){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
     
     let textFieldEmail : UITextField = {
        let textField = UITextField()
@@ -115,32 +122,87 @@ class ViewController: UIViewController {
         //let email = "deneme3@gmail.com"
         //let password  = "123456"
         
-        guard let email = textFieldEmail.text else {
-            return
-        }
+        guard let email = textFieldEmail.text else { return }
         
-        guard let password = textFieldPassword.text else {
-            return
-        }
+        guard let password = textFieldPassword.text else { return }
         
-        guard let userName = textFieldUserName.text else {
-            return
-        }
+        guard let userName = textFieldUserName.text else { return }
         
+        let createdProfileInfoHUD = JGProgressHUD(style: .light)
+        createdProfileInfoHUD.textLabel.text = "Kaydınız oluşturuluyor."
+        createdProfileInfoHUD.show(in: self.view)
         
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
                 print("Kullanıcı kayıt olurken hata meydana geldi.")
+                createdProfileInfoHUD.dismiss(animated: true)
                 return
             }
             
+            guard let createdUserID = result?.user.uid else { return }
+            
+            let photoID = UUID().uuidString
+            
+            let ref = Storage.storage().reference(withPath: "/ProfilePhotos/\(photoID)")
+            let photoData = self.buttonAddPhoto.imageView?.image?.jpegData(compressionQuality: 0.8 ) ?? Data()
+            
+            ref.putData(photoData, metadata: nil) { storageMetadata, error in
+                if let error = error {
+                    print("Fotoğraf kaydedilemedi.")
+                    print("Hata Mesajı: \(error)")
+                    return
+                }
+                
+                print("Görüntü başarıyla kaydedildi.")
+                
+                ref.downloadURL { url, error in
+                    if let error = error {
+                        print("Görüntünün url adresi alınamadı.")
+                        print("Hata Mesajı : \(error)")
+                        return
+                    }
+                    
+                    print("Görüntünün Url Adresi Burada Bulunmaktadır: \(url?.absoluteString ?? "Link Yok")")
+                    
+                    let addedData = [
+                        "userName" : userName,
+                        "userID" : createdUserID,
+                        "userProfilePhotoUrl": url?.absoluteString ?? ""
+                    ]
+                    
+                    Firestore.firestore().collection("Users").document(createdUserID).setData(addedData) { error in
+                        if let error = error  {
+                            print("Kullanıcı verileri firestore'a ekleyemedi.")
+                            print("Hata Mesajı : \(error)")
+                            return
+                        }
+                        print("Kullanıcı verileri firestore'a başarıyla ekledi.")
+                        createdProfileInfoHUD.dismiss(animated: true)
+                        self.clearTextFieldsAndPhoto()
+                        
+                        let successHud = JGProgressHUD(style: .light)
+                        successHud.textLabel.text = "Kayıt Başarılı"
+                        successHud.show(in: self.view)
+                        successHud.dismiss(afterDelay: 2)
+                        
+                    }
+                }
+            }
+            
             print("Kullanıcı kaydı başarıyla gerçekleşti.")
-            print("\(userName) kullanıcı adlı User ID : \(result?.user.uid)")
-            self.textFieldEmail.text = ""
-            self.textFieldPassword.text = ""
-            self.textFieldUserName.text = ""
+          
+         
             
         }
+    }
+    
+    fileprivate func clearTextFieldsAndPhoto(){
+        self.buttonAddPhoto.setImage(#imageLiteral(resourceName:"Fotograf_Sec").withRenderingMode(.alwaysOriginal) , for: .normal)
+        self.buttonAddPhoto.layer.borderColor = UIColor.clear.cgColor
+        self.buttonAddPhoto.layer.borderWidth = 0
+        self.textFieldEmail.text = ""
+        self.textFieldPassword.text = ""
+        self.textFieldUserName.text = ""
     }
     
     @objc fileprivate func whenDataChanges(){
@@ -157,4 +219,6 @@ class ViewController: UIViewController {
 
 
 }
+
+
 
