@@ -20,6 +20,11 @@
 		6641F90027C7992000492650 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6641F8FF27C7992000492650 /* UIColorExtensions.swift */; };
 		6641F90227C79A2600492650 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6641F90127C79A2600492650 /* UIViewExtensions.swift */; };
 		6641F90427C7C46800492650 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6641F90327C7C46800492650 /* GoogleService-Info.plist */; };
+		6688DA6D27C8D84C00A8AE8A /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688DA6C27C8D84C00A8AE8A /* HomeTabBarController.swift */; };
+		6688DA7027C8D9AB00A8AE8A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688DA6F27C8D9AB00A8AE8A /* ProfileViewController.swift */; };
+		6688DA7227C8E2F300A8AE8A /* ProfileViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688DA7127C8E2F300A8AE8A /* ProfileViewControllerExtensions.swift */; };
+		6688DA7427C8E52500A8AE8A /* ProfileHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688DA7327C8E52500A8AE8A /* ProfileHeaderCollectionViewCell.swift */; };
+		6688DA7727C8EB9400A8AE8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688DA7627C8EB9400A8AE8A /* User.swift */; };
 		668D452E27C81BA800788B91 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668D452D27C81BA800788B91 /* ViewControllerExtensions.swift */; };
 		D2440199E13BBAB15E233B4E /* Pods_InstagramApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F483002BEAD67CC7F763D5C /* Pods_InstagramApp.framework */; };
 		EC6A8B943A0A036C29355296 /* Pods_InstagramApp_InstagramAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B2F7B8AD3C928528AAE5D9 /* Pods_InstagramApp_InstagramAppUITests.framework */; };
@@ -63,6 +68,11 @@
 		6641F8FF27C7992000492650 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		6641F90127C79A2600492650 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		6641F90327C7C46800492650 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6688DA6C27C8D84C00A8AE8A /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		6688DA6F27C8D9AB00A8AE8A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		6688DA7127C8E2F300A8AE8A /* ProfileViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerExtensions.swift; sourceTree = "<group>"; };
+		6688DA7327C8E52500A8AE8A /* ProfileHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		6688DA7627C8EB9400A8AE8A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		668D452D27C81BA800788B91 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		726A54DD36EB7249F9C5EE7B /* Pods-InstagramAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramAppTests.release.xcconfig"; path = "Target Support Files/Pods-InstagramAppTests/Pods-InstagramAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		8F5D4E063BDF3584E82C6FA8 /* Pods-InstagramApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramApp.release.xcconfig"; path = "Target Support Files/Pods-InstagramApp/Pods-InstagramApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,10 +134,11 @@
 		6641F8CD27C78D0600492650 /* InstagramApp */ = {
 			isa = PBXGroup;
 			children = (
+				6688DA7527C8EB8A00A8AE8A /* Models */,
+				6688DA6A27C8D7D500A8AE8A /* Controllers */,
 				6641F8FE27C7991200492650 /* Resources */,
 				6641F8CE27C78D0600492650 /* AppDelegate.swift */,
 				6641F8D027C78D0600492650 /* SceneDelegate.swift */,
-				6641F8D227C78D0600492650 /* ViewController.swift */,
 				6641F8D427C78D0600492650 /* Main.storyboard */,
 				6641F8D727C78D0700492650 /* Assets.xcassets */,
 				6641F8D927C78D0700492650 /* LaunchScreen.storyboard */,
@@ -160,8 +171,44 @@
 				6641F8FF27C7992000492650 /* UIColorExtensions.swift */,
 				6641F90127C79A2600492650 /* UIViewExtensions.swift */,
 				668D452D27C81BA800788B91 /* ViewControllerExtensions.swift */,
+				6688DA7127C8E2F300A8AE8A /* ProfileViewControllerExtensions.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		6688DA6A27C8D7D500A8AE8A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6688DA6E27C8D98F00A8AE8A /* Profile */,
+				6688DA6B27C8D81B00A8AE8A /* Home */,
+				6641F8D227C78D0600492650 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6688DA6B27C8D81B00A8AE8A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				6688DA6C27C8D84C00A8AE8A /* HomeTabBarController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		6688DA6E27C8D98F00A8AE8A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				6688DA6F27C8D9AB00A8AE8A /* ProfileViewController.swift */,
+				6688DA7327C8E52500A8AE8A /* ProfileHeaderCollectionViewCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		6688DA7527C8EB8A00A8AE8A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6688DA7627C8EB9400A8AE8A /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A02D45B8D7E4C1DC68F3DA78 /* Pods */ = {
@@ -429,10 +476,15 @@
 			files = (
 				6641F8D327C78D0600492650 /* ViewController.swift in Sources */,
 				6641F90227C79A2600492650 /* UIViewExtensions.swift in Sources */,
+				6688DA7227C8E2F300A8AE8A /* ProfileViewControllerExtensions.swift in Sources */,
+				6688DA6D27C8D84C00A8AE8A /* HomeTabBarController.swift in Sources */,
 				6641F8CF27C78D0600492650 /* AppDelegate.swift in Sources */,
 				6641F8D127C78D0600492650 /* SceneDelegate.swift in Sources */,
 				668D452E27C81BA800788B91 /* ViewControllerExtensions.swift in Sources */,
+				6688DA7027C8D9AB00A8AE8A /* ProfileViewController.swift in Sources */,
 				6641F90027C7992000492650 /* UIColorExtensions.swift in Sources */,
+				6688DA7427C8E52500A8AE8A /* ProfileHeaderCollectionViewCell.swift in Sources */,
+				6688DA7727C8EB9400A8AE8A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
