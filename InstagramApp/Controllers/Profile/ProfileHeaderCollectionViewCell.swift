@@ -79,7 +79,7 @@ class ProfileHeaderCollectionViewCell: UICollectionViewCell {
     
     let buttonEditProfile : UIButton = {
         let button = UIButton()
-        button.setTitle("Edit Button", for: .normal)
+        button.setTitle("Edit Profile", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.layer.cornerRadius = 6
@@ -90,7 +90,7 @@ class ProfileHeaderCollectionViewCell: UICollectionViewCell {
     
     let labelUserName : UILabel = {
         let label = UILabel()
-        label.text = "Kullanıcı Adı"
+        label.text = "User Name"
         label.font = UIFont.boldSystemFont(ofSize: 15)
         
         return label
@@ -132,7 +132,6 @@ class ProfileHeaderCollectionViewCell: UICollectionViewCell {
         addSubview(buttonEditProfile)
         buttonEditProfile.anchor(top: labelPostText.bottomAnchor, bottom: nil, leading: labelPostText.leadingAnchor, trailing: labelFollow.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 35)
         
-         
     }
     
     fileprivate func createToolbar(){
@@ -149,7 +148,7 @@ class ProfileHeaderCollectionViewCell: UICollectionViewCell {
         addSubview(bottomDivider)
         
         stackView.axis = .horizontal
-        ///Bütün nesnelerin eşit oranda yer kaplamasını sağlayan parametre
+        //Bütün nesnelerin eşit oranda yer kaplamasını sağlayan parametre
         stackView.distribution = .fillEqually
         topDivider.anchor(top: stackView.topAnchor, bottom: nil, leading: self.leadingAnchor, trailing: self.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0.5)
         stackView.anchor(top: nil, bottom: self.bottomAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 60)

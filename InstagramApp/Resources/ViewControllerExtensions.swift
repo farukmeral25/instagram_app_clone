@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension ViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension SignUpController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
@@ -17,9 +17,9 @@ extension ViewController : UIImagePickerControllerDelegate, UINavigationControll
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[.originalImage] as? UIImage
         self.buttonAddPhoto.setImage(selectedImage?.withRenderingMode(.alwaysOriginal), for: .normal)
-        ///Gelen fotoğrafa radius verildi.
+        //Gelen fotoğrafa radius verildi.
         buttonAddPhoto.layer.cornerRadius = buttonAddPhoto.frame.width / 2
-        ///Gelen fotoğrafın sınırlarını göstermemek için kullanılan parametre
+        //Gelen fotoğrafın sınırlarını göstermemek için kullanılan parametre
         buttonAddPhoto.layer.masksToBounds = true
         buttonAddPhoto.layer.borderColor = UIColor.darkGray.cgColor
         buttonAddPhoto.layer.borderWidth = 3

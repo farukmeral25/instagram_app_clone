@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeTabBarController: UITabBarController {
 
@@ -13,6 +14,19 @@ class HomeTabBarController: UITabBarController {
         super.viewDidLoad()
 
         //view.backgroundColor = .blue
+        
+        if Auth.auth().currentUser == nil {
+            //Oturum Kapalı
+            print("Oturumu açan kullanıcı yok.")
+            DispatchQueue.main.async {
+                let loginViewController = LogInViewController()
+                let navigationController = UINavigationController(rootViewController: loginViewController)
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: true, completion: nil)
+            }
+            
+            return
+        }
         
         let layout = UICollectionViewFlowLayout()
         let profileViewController = ProfileViewController(collectionViewLayout: layout)

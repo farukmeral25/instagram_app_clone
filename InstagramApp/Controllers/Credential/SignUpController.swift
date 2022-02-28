@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SignUpController.swift
 //  InstagramApp
 //
 //  Created by Ömer Faruk Meral on 24.02.2022.
@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-class ViewController: UIViewController {
+class SignUpController: UIViewController {
     
     let buttonAddPhoto : UIButton = {
         let button = UIButton(type: .system)
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 6
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.setTitleColor(.white, for: .normal)
-        ///Butona onPressed methodu ekleme
+        //Butona onPressed methodu ekleme
         button.addTarget(self, action: #selector(buttonSignUpPressed), for: .touchUpInside)
         button.isEnabled = false
         return button
@@ -79,11 +79,13 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        navigationController?.isNavigationBarHidden = true
         //View'da görünmesini sağlayan method
         view.addSubview(buttonAddPhoto)
-        ///Frame özelliği bir nesneyi hemen konumlandırmak için kullanılır ve kalıcıdır.
+        //Frame özelliği bir nesneyi hemen konumlandırmak için kullanılır ve kalıcıdır.
         //buttonAddPhoto.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
-        ///Button ekranın merkezinde görünecek.
+        //Button ekranın merkezinde görünecek.
         //buttonAddPhoto.center = view.center
         //buttonAddPhoto.widthAnchor.constraint(equalToConstant: 150).isActive = true
         //buttonAddPhoto.heightAnchor.constraint(equalToConstant: 150).isActive = true
@@ -196,6 +198,7 @@ class ViewController: UIViewController {
         }
     }
     
+    ///Text Field alanlarını silen method
     fileprivate func clearTextFieldsAndPhoto(){
         self.buttonAddPhoto.setImage(#imageLiteral(resourceName:"Fotograf_Sec").withRenderingMode(.alwaysOriginal) , for: .normal)
         self.buttonAddPhoto.layer.borderColor = UIColor.clear.cgColor
@@ -205,6 +208,7 @@ class ViewController: UIViewController {
         self.textFieldUserName.text = ""
     }
     
+    ///Datalar doğru veya yanlış ise butonun alacağı renkleri bildiren method
     @objc fileprivate func whenDataChanges(){
         let isFormSuccess = (textFieldEmail.text?.count ?? 0) > 0 && (textFieldUserName.text?.count ?? 0) > 0 &&  (textFieldPassword.text?.count ?? 0) > 0 && ((textFieldEmail.text?.contains("@") ?? false))
         

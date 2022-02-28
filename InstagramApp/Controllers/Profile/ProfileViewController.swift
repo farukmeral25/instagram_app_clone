@@ -24,20 +24,47 @@ class ProfileViewController: UICollectionViewController {
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: "headerID")
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: postCellID)
+        createLogOutButton()
     }
+    
+  
+ 
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerID", for: indexPath) as! ProfileHeaderCollectionViewCell
         
+        //Header'da bulunan currentUser parametresine burada bulunan currentUser atanması yapıldı.
         header.currentUser = currentUser 
         //header.backgroundColor = .green
         
         return header
     }
     
+    ///Geçerli kullanıcının hesaptan çıkış yapmasını sağlayan method
+    @objc func logOut (){
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actionLogOut = UIAlertAction(title: "Log Out", style: .destructive) { _ in
+            guard let _ = Auth.auth().currentUser?.uid else {
+                return
+            }
+            
+            do {
+                try Auth.auth().signOut()
+            } catch let logOutError{
+                print("Log Out Error: \(logOutError)")
+            }
+        }
+        
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            print("Oturum kapatma işlemi iptal edildi.")
+        }
+        alertController.addAction(actionLogOut)
+        alertController.addAction(actionCancel)
+        present(alertController, animated: true, completion: nil)
+    }
  
     
-    /// Posts UI
+    // Posts UI Start
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
@@ -62,7 +89,7 @@ class ProfileViewController: UICollectionViewController {
         return 2
     }
     
-    
+    // Posts UI End
     
     fileprivate func fetchUserData(){
         guard let currentUserID = Auth.auth().currentUser?.uid else {
@@ -79,9 +106,9 @@ class ProfileViewController: UICollectionViewController {
                 return
             }
             
-            let userName = userData["userName"] as? String
+            //let userName = userData["userName"] as? String
             self.currentUser = User(userData: userData)
-            ///Header alanı yenilenecek.
+            //Header alanı yenilenecek.
             self.collectionView.reloadData()
             self.navigationItem.title = self.currentUser?.userName
 
@@ -89,6 +116,12 @@ class ProfileViewController: UICollectionViewController {
             
         }
     }
+    
+    ///Log Out butonu oluşturuluyor. Basıldığında alınacak aksiyon logout methodu.
+    fileprivate func createLogOutButton(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Ayarlar").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(logOut))
+    }
+    
     
 
 
