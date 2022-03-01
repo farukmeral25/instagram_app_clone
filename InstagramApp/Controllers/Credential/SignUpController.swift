@@ -75,6 +75,21 @@ class SignUpController: UIViewController {
         return button
     }()
     
+    let buttonLogIn : UIButton = {
+        let button = UIButton(type: .system)
+        //button.setTitle("Don't have an account? Sign up", for: .normal)
+        let attrTitle = NSMutableAttributedString(string: "Do you already have an account?", attributes: [.font : UIFont.systemFont(ofSize: 16),
+                                                                                        .foregroundColor : UIColor.lightGray])
+        attrTitle.append(NSAttributedString(string: " Log In", attributes: [.font : UIFont.boldSystemFont(ofSize: 16),
+                                                                                               .foregroundColor : UIColor.convertRGBA(red: 20, green: 155, blue: 235)
+                                                                                              ]))
+        button.setAttributedTitle(attrTitle, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        button.addTarget(self, action: #selector(buttonLogInPressed), for: .touchUpInside)
+        return button
+    }()
+
+    
     
 
     override func viewDidLoad() {
@@ -93,7 +108,8 @@ class SignUpController: UIViewController {
         //buttonAddPhoto.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
         buttonAddPhoto.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: nil, trailing: nil, paddingTop: 40, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 150, height: 150)
         createInputField()
-        
+        view.addSubview(buttonLogIn)
+        buttonLogIn.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
    
         
        
@@ -197,6 +213,14 @@ class SignUpController: UIViewController {
             
         }
     }
+    
+    
+    ///Bu method giriş yap sayfasına gidiyor.
+    @objc fileprivate func buttonLogInPressed(){
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
     
     ///Text Field alanlarını silen method
     fileprivate func clearTextFieldsAndPhoto(){
