@@ -28,6 +28,11 @@ class HomeTabBarController: UITabBarController {
             return
         }
         
+       createView()
+        
+    }
+    
+    func createView (){
         let layout = UICollectionViewFlowLayout()
         let profileViewController = ProfileViewController(collectionViewLayout: layout)
         let navigationController = UINavigationController(rootViewController: profileViewController)
@@ -36,9 +41,7 @@ class HomeTabBarController: UITabBarController {
         tabBar.tintColor = .black
         
         viewControllers = [navigationController,UIViewController()]
-        
     }
-    
 
     
 

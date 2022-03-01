@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import JGProgressHUD
 
 class LogInViewController: UIViewController {
     
@@ -27,6 +29,7 @@ class LogInViewController: UIViewController {
         textField.backgroundColor = UIColor(white: 0, alpha: 0.05)
         textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 16)
+        textField.addTarget(self, action: #selector(whenDataChanges), for: .editingChanged)
         return textField
     }()
     
@@ -37,6 +40,7 @@ class LogInViewController: UIViewController {
         textField.backgroundColor = UIColor(white: 0, alpha: 0.05)
         textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 16)
+        textField.addTarget(self, action: #selector(whenDataChanges), for: .editingChanged)
         return textField
     }()
     
@@ -48,6 +52,7 @@ class LogInViewController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.setTitleColor(.white, for: .normal)
         button.isEnabled = false
+        button.addTarget(self, action: #selector(buttonLogInPressed), for: .touchUpInside)
         return button
     }()
     
@@ -91,13 +96,62 @@ class LogInViewController: UIViewController {
         stackView.distribution = .fillEqually
     }
     
+    @objc fileprivate func whenDataChanges(){
+        let isFormSuccess = (textFieldEmail.text?.count ?? 0) > 0 && (textFieldPassword.text?.count ?? 0) > 0 && ((textFieldEmail.text?.contains("@") ?? false))
+        if isFormSuccess {
+            buttonLogIn.isEnabled = true
+            buttonLogIn.backgroundColor = UIColor.convertRGBA(red: 20, green: 155, blue: 235)
+        }else {
+            buttonLogIn.isEnabled = false
+            buttonLogIn.backgroundColor = UIColor.convertRGBA(red: 150, green: 205, blue: 245)
+        }
+    }
+        
+    ///LogIn işlemi yapıldığında çalışacak method
+    @objc fileprivate func buttonLogInPressed(){
+        guard let emailAddress = textFieldEmail.text, let password = textFieldPassword.text else {
+            return
+        }
+        
+        let hud = JGProgressHUD(style: .light)
+        hud.textLabel.text = "Logging On"
+        hud.show(in: self.view)
+        
+        Auth.auth().signIn(withEmail: emailAddress, password: password) { data, error in
+            if let error = error {
+                
+                hud.dismiss(animated: true)
+                let errorHud = JGProgressHUD(style: .light)
+                errorHud.textLabel.text = "Error logging in: \(error.localizedDescription)"
+                errorHud.show(in: self.view)
+                errorHud.dismiss(afterDelay: 2)
+                return
+            }
+            
+            let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).map({$0 as? UIWindowScene}).compactMap({$0}).first?.windows.filter({$0.isKeyWindow}).first
+            
+            guard let homeTabBarController = keyWindow?.rootViewController as? HomeTabBarController else { return }
+            homeTabBarController.createView() // Kullanıcı profil controller'a gider.
+            self.dismiss(animated: true, completion: nil) // Oturum açma ekranı kapatılacak.
+            
+            hud.dismiss(animated: true)
+            let successHud = JGProgressHUD(style: .light)
+            successHud.textLabel.text = "Login successful"
+            successHud.show(in: self.view)
+            successHud.dismiss(afterDelay: 1)
+            
+        }
+        
+    }
+
+    
     ///Bu method kayıt ol sayfasına gidiyor.
     @objc fileprivate func buttonSignUpPressed(){
         let signUpController = SignUpController()
         navigationController?.pushViewController(signUpController, animated: true )
     }
     
-
+   
   
 
 }

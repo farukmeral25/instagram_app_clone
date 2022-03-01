@@ -50,6 +50,10 @@ class ProfileViewController: UICollectionViewController {
             
             do {
                 try Auth.auth().signOut()
+                let logInController = LogInViewController()
+                let navigationController = UINavigationController(rootViewController: logInController)
+                navigationController.modalPresentationStyle = .fullScreen
+                self.present(navigationController, animated: true, completion: nil)
             } catch let logOutError{
                 print("Log Out Error: \(logOutError)")
             }
