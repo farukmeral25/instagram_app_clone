@@ -14,7 +14,7 @@ class HomeTabBarController: UITabBarController {
         super.viewDidLoad()
 
         //view.backgroundColor = .blue
-        
+        self.delegate = self
         if Auth.auth().currentUser == nil {
             //Oturum Kapalı
             print("Oturumu açan kullanıcı yok.")
@@ -33,16 +33,12 @@ class HomeTabBarController: UITabBarController {
     }
     
     func createView (){
+        
         let homeNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Ana_Ekran_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Ana_Ekran_Secili"), rootViewController: ProfileViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         let searchNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Ara_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Ara_Secili"))
         let addNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Ekle_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Ekle_Secili_Degil"))
         let likeNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Begeni_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Begeni_Secili"))
-        
-        let layout = UICollectionViewFlowLayout()
-        let profileViewController = ProfileViewController(collectionViewLayout: layout)
-        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
-        profileNavigationController.tabBarItem.image = #imageLiteral(resourceName: "Profil")
-        profileNavigationController.tabBarItem.selectedImage = #imageLiteral(resourceName: "Profil_Secili")
+        let profileNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Profil"), selectedImage: #imageLiteral(resourceName: "Profil_Secili"), rootViewController: ProfileViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         tabBar.tintColor = .black
         
         //Tabbar da basıldığında gidilecek viewlar
