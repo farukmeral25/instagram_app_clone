@@ -6,12 +6,13 @@
 //
 
 import UIKit
-
+import Photos
 
 
 class ChoosePhotoCollectionViewController: UICollectionViewController {
     let cellID = "cellID"
     let headerID = "headerID"
+    var photos = [UIImage]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +24,42 @@ class ChoosePhotoCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView.register(ChoosePhotoCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         collectionView.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
         
         // Do any additional setup after loading the view.
+        getPhotos()
+    }
+    
+    fileprivate func getPhotos() {
+        
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.fetchLimit = 10
+        let sortOptions = NSSortDescriptor(key: "creationDate", ascending: false)
+        fetchOptions.sortDescriptors = [sortOptions]
+        let photos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        photos.enumerateObjects { asset, number, stopPoint in
+            
+            //asset içinde tüm fotoğrafların bilgisi yer alır.
+            //number'da kaçıncı fotoğraf getiriliyor
+            //stopPoint fotoğraf getirilirken durulan noktanın adresini tutar
+            let imageManager = PHImageManager.default()
+            let imageSize = CGSize(width: 400, height: 400)
+            let options = PHImageRequestOptions()
+            //Artık fetch limit değerine göre getirilecek.
+            options.isSynchronous = true
+            imageManager.requestImage(for: asset, targetSize: imageSize, contentMode: .aspectFit, options: options) { image, imageInfo in
+                if let image = image {
+                    self.photos.append(image)
+                }
+                
+                if number == photos.count - 1 {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+        
+        print("Fotoğrafları Getir.")
     }
     
     override var prefersStatusBarHidden: Bool{
@@ -57,12 +90,13 @@ class ChoosePhotoCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 6
+        return photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
-        cell.backgroundColor = .brown
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! ChoosePhotoCollectionViewCell
+        //cell.backgroundColor = .brown
+        cell.imageView.image = photos[indexPath.row]
     
         // Configure the cell
     
