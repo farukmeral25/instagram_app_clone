@@ -13,10 +13,11 @@ class ChoosePhotoCollectionViewController: UICollectionViewController {
     let cellID = "cellID"
     let headerID = "headerID"
     var photos = [UIImage]()
-
+    var selectedPhoto : UIImage?
+    var assets = [PHAsset]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .yellow
+        collectionView.backgroundColor = .white
         
         addButtons()
         
@@ -25,40 +26,53 @@ class ChoosePhotoCollectionViewController: UICollectionViewController {
 
         // Register cell classes
         collectionView.register(ChoosePhotoCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
-        collectionView.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
+        collectionView.register(PhotoSelectorHeaderCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
         
         // Do any additional setup after loading the view.
         getPhotos()
     }
     
-    fileprivate func getPhotos() {
-        
+    fileprivate func getPhotosOptions() -> PHFetchOptions {
         let fetchOptions = PHFetchOptions()
-        fetchOptions.fetchLimit = 10
+        fetchOptions.fetchLimit = 20
         let sortOptions = NSSortDescriptor(key: "creationDate", ascending: false)
         fetchOptions.sortDescriptors = [sortOptions]
-        let photos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
-        photos.enumerateObjects { asset, number, stopPoint in
-            
-            //asset içinde tüm fotoğrafların bilgisi yer alır.
-            //number'da kaçıncı fotoğraf getiriliyor
-            //stopPoint fotoğraf getirilirken durulan noktanın adresini tutar
-            let imageManager = PHImageManager.default()
-            let imageSize = CGSize(width: 400, height: 400)
-            let options = PHImageRequestOptions()
-            //Artık fetch limit değerine göre getirilecek.
-            options.isSynchronous = true
-            imageManager.requestImage(for: asset, targetSize: imageSize, contentMode: .aspectFit, options: options) { image, imageInfo in
-                if let image = image {
-                    self.photos.append(image)
-                }
+        return fetchOptions
+    }
+    
+    fileprivate func getPhotos() {
+        
+        let photos = PHAsset.fetchAssets(with: .image, options: getPhotosOptions())
+        DispatchQueue.global(qos: .background).async {
+            photos.enumerateObjects { asset, number, stopPoint in
                 
-                if number == photos.count - 1 {
-                    self.collectionView.reloadData()
+                //asset içinde tüm fotoğrafların bilgisi yer alır.
+                //number'da kaçıncı fotoğraf getiriliyor
+                //stopPoint fotoğraf getirilirken durulan noktanın adresini tutar
+                let imageManager = PHImageManager.default()
+                let imageSize = CGSize(width: 200, height: 200)
+                let options = PHImageRequestOptions()
+                //Artık fetch limit değerine göre getirilecek.
+                options.isSynchronous = true
+                imageManager.requestImage(for: asset, targetSize: imageSize, contentMode: .aspectFit, options: options) { image, imageInfo in
+                    if let image = image {
+                        self.assets.append(asset)
+                        self.photos.append(image)
+                        if self.selectedPhoto == nil {
+                            self.selectedPhoto = image
+                        }
+                    }
+                    
+                    if number == photos.count - 1 {
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                        }
+                    }
                 }
             }
+            
         }
-        
+     
         print("Fotoğrafları Getir.")
     }
     
@@ -110,9 +124,26 @@ class ChoosePhotoCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath)
-        header.backgroundColor = .blue
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as! PhotoSelectorHeaderCollectionViewCell
+        
+        
+        if let selectedPhoto = selectedPhoto {
+            if let index = self.photos.firstIndex(of: selectedPhoto){
+                let seledtedAsset = self.assets[index]
+                let photoManager = PHImageManager.default()
+                let size = CGSize(width: 800, height: 800)
+                photoManager.requestImage(for: seledtedAsset, targetSize: size, contentMode: .default, options: nil) { photo, info in
+                    header.imageHeader.image = photo
+                }
+            }
+        }
+        
         return header
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedPhoto = photos[indexPath.row]
+        collectionView.reloadData()
     }
 
     // MARK: UICollectionViewDelegate
