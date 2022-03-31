@@ -14,6 +14,8 @@ class ProfileViewController: UICollectionViewController {
     
     let postCellID = "postCellID"
     
+    var shares = [SharePhoto]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,11 +25,30 @@ class ProfileViewController: UICollectionViewController {
         collectionView.register(ProfileHeaderCollectionViewCell.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: "headerID")
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: postCellID)
+        collectionView.register(UserSharePhotoCollectionViewCell.self, forCellWithReuseIdentifier: postCellID)
         createLogOutButton()
+        
     }
     
-  
+    fileprivate func fetchSharePhotos() {
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("Shares").document(currentUserID).collection("SharePhotos").order(by: "dateTime", descending: false).addSnapshotListener { querySnapshot, err in
+            if let err = err{
+                print("Error: ", err)
+            }
+            querySnapshot?.documentChanges.forEach({ modification in
+                if modification.type == .added {
+                    //Döküman verisine ulaşma
+                    let shareData = modification.document.data()
+                    let share = SharePhoto(data: shareData)
+                    self.shares.append(share)
+                }
+            })
+            self.shares.reverse()
+            //Tüm paylaşımlar shares dizisine aktarıldı.
+            self.collectionView.reloadData()
+        }
+    }
  
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -71,12 +92,12 @@ class ProfileViewController: UICollectionViewController {
     // Posts UI Start
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return shares.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let postCell = collectionView.dequeueReusableCell(withReuseIdentifier: postCellID, for: indexPath)
-        postCell.backgroundColor = .blue
+        let postCell = collectionView.dequeueReusableCell(withReuseIdentifier: postCellID, for: indexPath) as! UserSharePhotoCollectionViewCell
+        postCell.share = shares[indexPath.row]
         return postCell
     }
     
@@ -112,8 +133,9 @@ class ProfileViewController: UICollectionViewController {
             
             //let userName = userData["userName"] as? String
             self.currentUser = User(userData: userData)
-            //Header alanı yenilenecek.
-            self.collectionView.reloadData()
+            ///Header alanı yenilenecek.
+            //self.collectionView.reloadData()
+            self.fetchSharePhotos()
             self.navigationItem.title = self.currentUser?.userName
 
             

@@ -15,6 +15,7 @@ class ChoosePhotoCollectionViewController: UICollectionViewController {
     var photos = [UIImage]()
     var selectedPhoto : UIImage?
     var assets = [PHAsset]()
+    var header : PhotoSelectorHeaderCollectionViewCell?
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
@@ -91,7 +92,9 @@ class ChoosePhotoCollectionViewController: UICollectionViewController {
     }
     
     @objc func buttonNextPressed(){
-        print("Sonraki Butonuna Basıldı.")
+        let sharePhotoViewController = SharePhotoViewController()
+        sharePhotoViewController.selectedPhoto = header?.imageHeader.image
+        navigationController?.pushViewController(sharePhotoViewController, animated: true)
     }
 //
 //    override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -125,7 +128,8 @@ class ChoosePhotoCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as! PhotoSelectorHeaderCollectionViewCell
-        
+        self.header = header
+        header.imageHeader.image = selectedPhoto
         
         if let selectedPhoto = selectedPhoto {
             if let index = self.photos.firstIndex(of: selectedPhoto){
@@ -144,6 +148,8 @@ class ChoosePhotoCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedPhoto = photos[indexPath.row]
         collectionView.reloadData()
+        let indexTop = IndexPath(item: 0,section: 0)
+        collectionView.scrollToItem(at: indexTop, at: .bottom, animated: true)
     }
 
     // MARK: UICollectionViewDelegate

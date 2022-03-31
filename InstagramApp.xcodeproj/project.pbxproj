@@ -31,6 +31,9 @@
 		66907E5827D245D700207EFF /* UINavigationControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907E5727D245D700207EFF /* UINavigationControllerExtensions.swift */; };
 		66907E5A27D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907E5927D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift */; };
 		66A3067027CD73D5002DA4B8 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3066F27CD73D5002DA4B8 /* LogInViewController.swift */; };
+		78761C9B27F607F20018CA0D /* SharePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78761C9A27F607F20018CA0D /* SharePhoto.swift */; };
+		78761C9D27F60A540018CA0D /* UserSharePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78761C9C27F60A540018CA0D /* UserSharePhotoCollectionViewCell.swift */; };
+		787ECBAD27F4B08700784A8F /* SharePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787ECBAC27F4B08700784A8F /* SharePhotoViewController.swift */; };
 		78A0264827F24F26001C3AA6 /* PhotoSelectorHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0264727F24F26001C3AA6 /* PhotoSelectorHeaderCollectionViewCell.swift */; };
 		78DFC54527DCDFCF007A9C60 /* ChoosePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DFC54427DCDFCF007A9C60 /* ChoosePhotoCollectionViewCell.swift */; };
 		D2440199E13BBAB15E233B4E /* Pods_InstagramApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F483002BEAD67CC7F763D5C /* Pods_InstagramApp.framework */; };
@@ -87,6 +90,9 @@
 		66907E5927D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePhotoCollectionVievControllerExtensions.swift; sourceTree = "<group>"; };
 		66A3066F27CD73D5002DA4B8 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		726A54DD36EB7249F9C5EE7B /* Pods-InstagramAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramAppTests.release.xcconfig"; path = "Target Support Files/Pods-InstagramAppTests/Pods-InstagramAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		78761C9A27F607F20018CA0D /* SharePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhoto.swift; sourceTree = "<group>"; };
+		78761C9C27F60A540018CA0D /* UserSharePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSharePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		787ECBAC27F4B08700784A8F /* SharePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoViewController.swift; sourceTree = "<group>"; };
 		78A0264727F24F26001C3AA6 /* PhotoSelectorHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		78DFC54427DCDFCF007A9C60 /* ChoosePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F5D4E063BDF3584E82C6FA8 /* Pods-InstagramApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramApp.release.xcconfig"; path = "Target Support Files/Pods-InstagramApp/Pods-InstagramApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -217,6 +223,7 @@
 			children = (
 				6688DA6F27C8D9AB00A8AE8A /* ProfileViewController.swift */,
 				6688DA7327C8E52500A8AE8A /* ProfileHeaderCollectionViewCell.swift */,
+				78761C9C27F60A540018CA0D /* UserSharePhotoCollectionViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -225,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				6688DA7627C8EB9400A8AE8A /* User.swift */,
+				78761C9A27F607F20018CA0D /* SharePhoto.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -235,6 +243,7 @@
 				66907E5527D2437800207EFF /* ChoosePhotoCollectionViewController.swift */,
 				78DFC54427DCDFCF007A9C60 /* ChoosePhotoCollectionViewCell.swift */,
 				78A0264727F24F26001C3AA6 /* PhotoSelectorHeaderCollectionViewCell.swift */,
+				787ECBAC27F4B08700784A8F /* SharePhotoViewController.swift */,
 			);
 			path = PhotoOperations;
 			sourceTree = "<group>";
@@ -516,10 +525,13 @@
 				6641F90227C79A2600492650 /* UIViewExtensions.swift in Sources */,
 				6688DA7227C8E2F300A8AE8A /* ProfileViewControllerExtensions.swift in Sources */,
 				66907E5A27D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift in Sources */,
+				78761C9D27F60A540018CA0D /* UserSharePhotoCollectionViewCell.swift in Sources */,
 				6688DA6D27C8D84C00A8AE8A /* HomeTabBarController.swift in Sources */,
 				78A0264827F24F26001C3AA6 /* PhotoSelectorHeaderCollectionViewCell.swift in Sources */,
 				6641F8CF27C78D0600492650 /* AppDelegate.swift in Sources */,
 				6641F8D127C78D0600492650 /* SceneDelegate.swift in Sources */,
+				78761C9B27F607F20018CA0D /* SharePhoto.swift in Sources */,
+				787ECBAD27F4B08700784A8F /* SharePhotoViewController.swift in Sources */,
 				66907E5627D2437800207EFF /* ChoosePhotoCollectionViewController.swift in Sources */,
 				668D452E27C81BA800788B91 /* ViewControllerExtensions.swift in Sources */,
 				6688DA7027C8D9AB00A8AE8A /* ProfileViewController.swift in Sources */,
