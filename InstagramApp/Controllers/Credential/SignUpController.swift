@@ -110,7 +110,7 @@ class SignUpController: UIViewController {
         createInputField()
         view.addSubview(buttonLogIn)
         buttonLogIn.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
-   
+        
         
        
     }

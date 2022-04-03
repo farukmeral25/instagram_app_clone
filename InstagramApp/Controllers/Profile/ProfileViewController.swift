@@ -10,6 +10,8 @@ import Firebase
 
 class ProfileViewController: UICollectionViewController {
     
+    var userID : String?
+    
     var currentUser : User?
     
     let postCellID = "postCellID"
@@ -31,7 +33,8 @@ class ProfileViewController: UICollectionViewController {
     }
     
     fileprivate func fetchSharePhotos() {
-        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+        //guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+        guard let currentUserID = self.currentUser?.userID else { return }
         guard let currentUser = currentUser else {
             return
         }
@@ -121,9 +124,12 @@ class ProfileViewController: UICollectionViewController {
     // Posts UI End
     
     fileprivate func fetchUserData(){
-        guard let currentUserID = Auth.auth().currentUser?.uid else {
+        /*guard let currentUserID = Auth.auth().currentUser?.uid else {
             return
         }
+         */
+        
+        let currentUserID = userID ?? Auth.auth().currentUser?.uid ?? ""
         
         Firestore.firestore().collection("Users").document(currentUserID).getDocument { snapshot, error in
             if let error = error {
