@@ -9,6 +9,16 @@ import UIKit
 
 class SearchUserCollectionViewCell: UICollectionViewCell {
     
+    var user : User? {
+        didSet {
+            labelUserName.text = user?.userName
+            if let url = URL(string: user?.userProfilePhotoUrl ?? ""){
+                userProfilePhoto.sd_setImage(with: url,completed: nil)
+            }
+            
+        }
+    }
+    
     let userProfilePhoto : UIImageView = {
        let image = UIImageView()
         image.backgroundColor = .yellow
