@@ -34,7 +34,7 @@ class TabBarController: UITabBarController {
     func createView (){
         
         let homeNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Ana_Ekran_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Ana_Ekran_Secili"), rootViewController: HomeCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
-        let searchNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Ara_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Ara_Secili"))
+        let searchNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Ara_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Ara_Secili"),rootViewController: SearchUserCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         let addNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Ekle_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Ekle_Secili_Degil"))
         let likeNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Begeni_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Begeni_Secili"))
         let profileNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Profil"), selectedImage: #imageLiteral(resourceName: "Profil_Secili"), rootViewController: ProfileViewController(collectionViewLayout: UICollectionViewFlowLayout()))
