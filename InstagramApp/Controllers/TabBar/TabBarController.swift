@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class HomeTabBarController: UITabBarController {
+class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +17,7 @@ class HomeTabBarController: UITabBarController {
         self.delegate = self
         if Auth.auth().currentUser == nil {
             //Oturum Kapalı
-            print("Oturumu açan kullanıcı yok.")
+            
             DispatchQueue.main.async {
                 let loginViewController = LogInViewController()
                 let navigationController = UINavigationController(rootViewController: loginViewController)
@@ -27,14 +27,13 @@ class HomeTabBarController: UITabBarController {
             
             return
         }
-        
-       createView()
+           createView()
         
     }
     
     func createView (){
         
-        let homeNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Ana_Ekran_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Ana_Ekran_Secili"), rootViewController: ProfileViewController(collectionViewLayout: UICollectionViewFlowLayout()))
+        let homeNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Ana_Ekran_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Ana_Ekran_Secili"), rootViewController: HomeCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout()))
         let searchNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Ara_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Ara_Secili"))
         let addNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Ekle_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Ekle_Secili_Degil"))
         let likeNavigationController = createNavigationController(image: #imageLiteral(resourceName: "Begeni_Secili_Degil"),selectedImage: #imageLiteral(resourceName: "Begeni_Secili"))

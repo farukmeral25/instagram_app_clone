@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 
 struct SharePhoto {
+    let user : User
     let photoUrl : String?
     let photoHeight : Double?
     let photoWidth : Double?
@@ -16,7 +17,8 @@ struct SharePhoto {
     let message : String?
     let dateTime : Timestamp?
     
-    init(data : [String : Any]) {
+    init(user : User,data : [String : Any]) {
+        self.user = user
         self.photoUrl = data["photoUrl"] as? String
         self.photoHeight = data["photoHeight"] as? Double
         self.photoWidth = data["photoWidth"] as? Double

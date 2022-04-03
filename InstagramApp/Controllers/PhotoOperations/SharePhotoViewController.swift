@@ -71,7 +71,7 @@ class SharePhotoViewController: UIViewController {
                 return
             }
             
-            print("Photo saved")
+            
             ref.downloadURL { url, err in
                 hud.textLabel.text = "Photo Saved"
                 hud.dismiss(afterDelay: 2)

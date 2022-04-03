@@ -130,7 +130,7 @@ class LogInViewController: UIViewController {
             
             let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).map({$0 as? UIWindowScene}).compactMap({$0}).first?.windows.filter({$0.isKeyWindow}).first
             
-            guard let homeTabBarController = keyWindow?.rootViewController as? HomeTabBarController else { return }
+            guard let homeTabBarController = keyWindow?.rootViewController as? TabBarController else { return }
             homeTabBarController.createView() // Kullanıcı profil controller'a gider.
             self.dismiss(animated: true, completion: nil) // Oturum açma ekranı kapatılacak.
             

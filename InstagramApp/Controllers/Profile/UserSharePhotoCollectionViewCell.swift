@@ -10,7 +10,7 @@ import UIKit
 class UserSharePhotoCollectionViewCell: UICollectionViewCell {
     var share: SharePhoto? {
         didSet {
-            print("Hücre oluşturuldu.")
+            
             if let url = URL(string: share?.photoUrl ?? ""){
                 sharePhoto.sd_setImage(with: url,completed: nil)
             }

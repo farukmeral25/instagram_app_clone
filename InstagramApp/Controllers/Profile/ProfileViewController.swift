@@ -32,6 +32,10 @@ class ProfileViewController: UICollectionViewController {
     
     fileprivate func fetchSharePhotos() {
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+        guard let currentUser = currentUser else {
+            return
+        }
+
         Firestore.firestore().collection("Shares").document(currentUserID).collection("SharePhotos").order(by: "dateTime", descending: false).addSnapshotListener { querySnapshot, err in
             if let err = err{
                 print("Error: ", err)
@@ -40,7 +44,7 @@ class ProfileViewController: UICollectionViewController {
                 if modification.type == .added {
                     //Döküman verisine ulaşma
                     let shareData = modification.document.data()
-                    let share = SharePhoto(data: shareData)
+                    let share = SharePhoto(user: currentUser, data: shareData)
                     self.shares.append(share)
                 }
             })

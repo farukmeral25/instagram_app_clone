@@ -74,7 +74,7 @@ class ChoosePhotoCollectionViewController: UICollectionViewController {
             
         }
      
-        print("Fotoğrafları Getir.")
+        
     }
     
     override var prefersStatusBarHidden: Bool{

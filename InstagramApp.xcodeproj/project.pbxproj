@@ -20,17 +20,20 @@
 		6641F90027C7992000492650 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6641F8FF27C7992000492650 /* UIColorExtensions.swift */; };
 		6641F90227C79A2600492650 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6641F90127C79A2600492650 /* UIViewExtensions.swift */; };
 		6641F90427C7C46800492650 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6641F90327C7C46800492650 /* GoogleService-Info.plist */; };
-		6688DA6D27C8D84C00A8AE8A /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688DA6C27C8D84C00A8AE8A /* HomeTabBarController.swift */; };
+		6688DA6D27C8D84C00A8AE8A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688DA6C27C8D84C00A8AE8A /* TabBarController.swift */; };
 		6688DA7027C8D9AB00A8AE8A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688DA6F27C8D9AB00A8AE8A /* ProfileViewController.swift */; };
 		6688DA7227C8E2F300A8AE8A /* ProfileViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688DA7127C8E2F300A8AE8A /* ProfileViewControllerExtensions.swift */; };
 		6688DA7427C8E52500A8AE8A /* ProfileHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688DA7327C8E52500A8AE8A /* ProfileHeaderCollectionViewCell.swift */; };
 		6688DA7727C8EB9400A8AE8A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6688DA7627C8EB9400A8AE8A /* User.swift */; };
 		668D452E27C81BA800788B91 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668D452D27C81BA800788B91 /* ViewControllerExtensions.swift */; };
-		66907E5127D2408800207EFF /* HomeTabBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907E5027D2408800207EFF /* HomeTabBarExtensions.swift */; };
+		66907E5127D2408800207EFF /* TabBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907E5027D2408800207EFF /* TabBarExtensions.swift */; };
 		66907E5627D2437800207EFF /* ChoosePhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907E5527D2437800207EFF /* ChoosePhotoCollectionViewController.swift */; };
 		66907E5827D245D700207EFF /* UINavigationControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907E5727D245D700207EFF /* UINavigationControllerExtensions.swift */; };
 		66907E5A27D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907E5927D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift */; };
 		66A3067027CD73D5002DA4B8 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3066F27CD73D5002DA4B8 /* LogInViewController.swift */; };
+		786FA62827F87ABE0066D6CF /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786FA62727F87ABE0066D6CF /* HomeCollectionViewController.swift */; };
+		786FA62A27F87BD50066D6CF /* HomeShareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786FA62927F87BD50066D6CF /* HomeShareCollectionViewCell.swift */; };
+		786FA62C27F87CBC0066D6CF /* HomeCollectionViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786FA62B27F87CBC0066D6CF /* HomeCollectionViewControllerExtension.swift */; };
 		78761C9B27F607F20018CA0D /* SharePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78761C9A27F607F20018CA0D /* SharePhoto.swift */; };
 		78761C9D27F60A540018CA0D /* UserSharePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78761C9C27F60A540018CA0D /* UserSharePhotoCollectionViewCell.swift */; };
 		787ECBAD27F4B08700784A8F /* SharePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787ECBAC27F4B08700784A8F /* SharePhotoViewController.swift */; };
@@ -78,18 +81,21 @@
 		6641F8FF27C7992000492650 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		6641F90127C79A2600492650 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		6641F90327C7C46800492650 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		6688DA6C27C8D84C00A8AE8A /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		6688DA6C27C8D84C00A8AE8A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		6688DA6F27C8D9AB00A8AE8A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6688DA7127C8E2F300A8AE8A /* ProfileViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerExtensions.swift; sourceTree = "<group>"; };
 		6688DA7327C8E52500A8AE8A /* ProfileHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		6688DA7627C8EB9400A8AE8A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		668D452D27C81BA800788B91 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
-		66907E5027D2408800207EFF /* HomeTabBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarExtensions.swift; sourceTree = "<group>"; };
+		66907E5027D2408800207EFF /* TabBarExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarExtensions.swift; sourceTree = "<group>"; };
 		66907E5527D2437800207EFF /* ChoosePhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		66907E5727D245D700207EFF /* UINavigationControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtensions.swift; sourceTree = "<group>"; };
 		66907E5927D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePhotoCollectionVievControllerExtensions.swift; sourceTree = "<group>"; };
 		66A3066F27CD73D5002DA4B8 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		726A54DD36EB7249F9C5EE7B /* Pods-InstagramAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramAppTests.release.xcconfig"; path = "Target Support Files/Pods-InstagramAppTests/Pods-InstagramAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		786FA62727F87ABE0066D6CF /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
+		786FA62927F87BD50066D6CF /* HomeShareCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeShareCollectionViewCell.swift; sourceTree = "<group>"; };
+		786FA62B27F87CBC0066D6CF /* HomeCollectionViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewControllerExtension.swift; sourceTree = "<group>"; };
 		78761C9A27F607F20018CA0D /* SharePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhoto.swift; sourceTree = "<group>"; };
 		78761C9C27F60A540018CA0D /* UserSharePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSharePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		787ECBAC27F4B08700784A8F /* SharePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoViewController.swift; sourceTree = "<group>"; };
@@ -192,9 +198,10 @@
 				6641F90127C79A2600492650 /* UIViewExtensions.swift */,
 				668D452D27C81BA800788B91 /* ViewControllerExtensions.swift */,
 				6688DA7127C8E2F300A8AE8A /* ProfileViewControllerExtensions.swift */,
-				66907E5027D2408800207EFF /* HomeTabBarExtensions.swift */,
+				66907E5027D2408800207EFF /* TabBarExtensions.swift */,
 				66907E5727D245D700207EFF /* UINavigationControllerExtensions.swift */,
 				66907E5927D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift */,
+				786FA62B27F87CBC0066D6CF /* HomeCollectionViewControllerExtension.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -202,20 +209,21 @@
 		6688DA6A27C8D7D500A8AE8A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				786FA62427F87A630066D6CF /* Home */,
 				66907E5227D242F700207EFF /* PhotoOperations */,
 				66A3066C27CD7377002DA4B8 /* Credential */,
 				6688DA6E27C8D98F00A8AE8A /* Profile */,
-				6688DA6B27C8D81B00A8AE8A /* Home */,
+				6688DA6B27C8D81B00A8AE8A /* TabBar */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		6688DA6B27C8D81B00A8AE8A /* Home */ = {
+		6688DA6B27C8D81B00A8AE8A /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				6688DA6C27C8D84C00A8AE8A /* HomeTabBarController.swift */,
+				6688DA6C27C8D84C00A8AE8A /* TabBarController.swift */,
 			);
-			path = Home;
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		6688DA6E27C8D98F00A8AE8A /* Profile */ = {
@@ -255,6 +263,15 @@
 				66A3066F27CD73D5002DA4B8 /* LogInViewController.swift */,
 			);
 			path = Credential;
+			sourceTree = "<group>";
+		};
+		786FA62427F87A630066D6CF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				786FA62727F87ABE0066D6CF /* HomeCollectionViewController.swift */,
+				786FA62927F87BD50066D6CF /* HomeShareCollectionViewCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		A02D45B8D7E4C1DC68F3DA78 /* Pods */ = {
@@ -521,12 +538,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786FA62A27F87BD50066D6CF /* HomeShareCollectionViewCell.swift in Sources */,
 				6641F8D327C78D0600492650 /* SignUpController.swift in Sources */,
 				6641F90227C79A2600492650 /* UIViewExtensions.swift in Sources */,
 				6688DA7227C8E2F300A8AE8A /* ProfileViewControllerExtensions.swift in Sources */,
+				786FA62827F87ABE0066D6CF /* HomeCollectionViewController.swift in Sources */,
 				66907E5A27D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift in Sources */,
 				78761C9D27F60A540018CA0D /* UserSharePhotoCollectionViewCell.swift in Sources */,
-				6688DA6D27C8D84C00A8AE8A /* HomeTabBarController.swift in Sources */,
+				786FA62C27F87CBC0066D6CF /* HomeCollectionViewControllerExtension.swift in Sources */,
+				6688DA6D27C8D84C00A8AE8A /* TabBarController.swift in Sources */,
 				78A0264827F24F26001C3AA6 /* PhotoSelectorHeaderCollectionViewCell.swift in Sources */,
 				6641F8CF27C78D0600492650 /* AppDelegate.swift in Sources */,
 				6641F8D127C78D0600492650 /* SceneDelegate.swift in Sources */,
@@ -541,7 +561,7 @@
 				6688DA7427C8E52500A8AE8A /* ProfileHeaderCollectionViewCell.swift in Sources */,
 				6688DA7727C8EB9400A8AE8A /* User.swift in Sources */,
 				78DFC54527DCDFCF007A9C60 /* ChoosePhotoCollectionViewCell.swift in Sources */,
-				66907E5127D2408800207EFF /* HomeTabBarExtensions.swift in Sources */,
+				66907E5127D2408800207EFF /* TabBarExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

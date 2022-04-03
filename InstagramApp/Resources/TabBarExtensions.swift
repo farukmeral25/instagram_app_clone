@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension HomeTabBarController :  UITabBarControllerDelegate {
+extension TabBarController :  UITabBarControllerDelegate {
     
     
     //Basılan viewcontroller gösterilsin mi gösterilmesin mi methodu
@@ -25,7 +25,7 @@ extension HomeTabBarController :  UITabBarControllerDelegate {
             
             return false
         }
-        print("\(index). butona bastın.")
+        
         
         return true
     }
