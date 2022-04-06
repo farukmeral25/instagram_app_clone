@@ -14,11 +14,13 @@ class ProfileHeaderCollectionViewCell: UICollectionViewCell {
     
     var currentUser : User? {
         didSet {
+            setFollowButton()
             guard let url = URL(string: currentUser?.userProfilePhotoUrl ?? "") else { return }
             userImage.sd_setImage(with: url, completed: nil)
             labelUserName.text = currentUser?.userName
         }
     }
+    
     
     let userImage : UIImageView = {
         let image = UIImageView()
@@ -77,16 +79,110 @@ class ProfileHeaderCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let buttonEditProfile : UIButton = {
+    lazy var buttonEditProfile : UIButton = {
         let button = UIButton()
-        button.setTitle("Edit Profile", for: .normal)
+        
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
         button.layer.cornerRadius = 6
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.borderWidth = 1
+        button.addTarget(self, action: #selector(editButtonProfileFollow), for: .touchUpInside)
         return button
     }()
+    
+    fileprivate func setFollowButton(){
+        guard let loggedUserID = Auth.auth().currentUser?.uid else { return }
+        guard let currentUserID = currentUser?.userID else { return }
+        if loggedUserID != currentUserID {
+            Firestore.firestore().collection("Follow").document(loggedUserID).getDocument { snapshot, error in
+                if let error = error {
+                    print("Error : ", error.localizedDescription)
+                    return
+                }
+                guard let followData = snapshot?.data() else { return }
+                if let data = followData[currentUserID] {
+                    let follow = data as! Int
+                    print(follow)
+                    if follow == 1 {
+                        self.buttonEditProfile.setTitle("UnFollow", for: .normal)
+                    }
+                }else {
+                    self.buttonEditProfile.setTitle("Follow", for: .normal)
+                    self.buttonEditProfile.backgroundColor = UIColor.convertRGBA(red: 20, green: 155, blue: 240)
+                    self.buttonEditProfile.setTitleColor(.white, for: .normal)
+                    self.buttonEditProfile.layer.borderColor = UIColor(white: 0, alpha: 0.3).cgColor
+                    self.buttonEditProfile.layer.borderWidth = 1
+                }
+            }
+           
+        } else {
+            self.buttonEditProfile.setTitle("Edit Profile", for: .normal)
+        }
+    }
+
+    
+    @objc fileprivate func editButtonProfileFollow(){
+        guard let loggedUserID = Auth.auth().currentUser?.uid else { return }
+        guard let currentUserID = currentUser?.userID else { return }
+        
+        if buttonEditProfile.titleLabel?.text == "UnFollow" {
+            Firestore.firestore().collection("Follow").document(loggedUserID).updateData([currentUserID : FieldValue.delete()]) { error in
+                if let error = error {
+                    print("Error : ", error)
+                    return
+                }
+                print("\(self.currentUser?.userName ?? "") unFollow")
+                self.buttonEditProfile.backgroundColor = UIColor.convertRGBA(red: 20, green: 155, blue: 240)
+                self.buttonEditProfile.setTitle("Follow", for: .normal)
+                self.buttonEditProfile.setTitleColor(.white, for: .normal)
+                self.buttonEditProfile.layer.borderColor = UIColor(white: 0, alpha: 0.3).cgColor
+                self.buttonEditProfile.layer.borderWidth = 1
+            }
+            return
+        }
+        
+        
+        let addedValue = [currentUserID : 1]
+        
+        Firestore.firestore().collection("Follow").document(loggedUserID).getDocument { snapshot, error in
+            if let error = error {
+                print("Error : ", error.localizedDescription)
+            }
+            if snapshot?.exists == true {
+                Firestore.firestore().collection("Follow").document(loggedUserID).updateData(addedValue) { error in
+                    if let error = error {
+                        print("Error : ", error.localizedDescription)
+                        return
+                    }
+                    self.buttonEditProfile.setTitle("UnFollow", for: .normal)
+                    self.buttonEditProfile.setTitleColor(.black, for: .normal)
+                    self.buttonEditProfile.backgroundColor = .white
+                    self.buttonEditProfile.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+                    self.buttonEditProfile.layer.borderColor = UIColor.lightGray.cgColor
+                    self.buttonEditProfile.layer.borderWidth = 1
+                    self.buttonEditProfile.layer.cornerRadius = 5
+                    print("Success following")
+                }
+            }else {
+                Firestore.firestore().collection("Follow").document(loggedUserID).setData(addedValue) { error in
+                    print("Error : ", error?.localizedDescription)
+                    return
+                }
+                self.buttonEditProfile.setTitle("UnFollow", for: .normal)
+                self.buttonEditProfile.setTitleColor(.black, for: .normal)
+                self.buttonEditProfile.backgroundColor = .white
+                self.buttonEditProfile.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+                self.buttonEditProfile.layer.borderColor = UIColor.lightGray.cgColor
+                self.buttonEditProfile.layer.borderWidth = 1
+                self.buttonEditProfile.layer.cornerRadius = 5
+                print("Success following")
+            }
+        }
+        
+       
+        
+    }
     
     let labelUserName : UILabel = {
         let label = UILabel()

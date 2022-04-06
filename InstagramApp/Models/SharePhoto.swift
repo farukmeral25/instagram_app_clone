@@ -15,7 +15,7 @@ struct SharePhoto {
     let photoWidth : Double?
     let userID : String?
     let message : String?
-    let dateTime : Timestamp?
+    let dateTime : Timestamp
     
     init(user : User,data : [String : Any]) {
         self.user = user
@@ -24,7 +24,7 @@ struct SharePhoto {
         self.photoWidth = data["photoWidth"] as? Double
         self.userID = data["userID"] as? String
         self.message = data["message"] as? String
-        self.dateTime = data["dateTime"] as? Timestamp
+        self.dateTime = data["dateTime"] as? Timestamp ?? Timestamp(date: Date())
         
     }
 }

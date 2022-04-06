@@ -99,8 +99,8 @@ class HomeShareCollectionViewCell: UICollectionViewCell {
         attrText.append(NSAttributedString(string: " \(share.message ?? "")", attributes: [.font: UIFont.systemFont(ofSize: 14)]))
 
         attrText.append(NSAttributedString(string: "\n\n", attributes: [.font: UIFont.systemFont(ofSize: 4)]))
-
-        attrText.append(NSAttributedString(string: "1 week ago", attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor : UIColor.gray]))
+        let dateTime = share.dateTime.dateValue()
+        attrText.append(NSAttributedString(string: dateTime.calculateTime(), attributes: [.font: UIFont.systemFont(ofSize: 14), .foregroundColor : UIColor.gray]))
 
         labelSharedMessage.attributedText = attrText
     }

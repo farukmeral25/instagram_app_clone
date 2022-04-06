@@ -26,17 +26,37 @@ class HomeCollectionViewController: UICollectionViewController {
         // Do any additional setup after loading the view.
         
         createButtons()
-        fetchUser()
+        fetchUser() //Oturumu açmış olan kullanıcının paylaşımları getiriliyor.
+        //fetchUser(userID: "uen1A3xBOngDyigf1WozCARfh5U2")
+        /*Firestore.createUser(userID: "uen1A3xBOngDyigf1WozCARfh5U2") { user in
+            self.getSharePhotos(user: user)
+        }*/
+        fetchFollowedUser()
+    }
+    
+    fileprivate func fetchFollowedUser() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("Follow").document(uid).addSnapshotListener { documentSnapshot, error in
+        
+            if let error = error {
+                print("Error : ", error.localizedDescription)
+                return
+            }
+          
+            guard let shareDictionaryData = documentSnapshot?.data() else { return }
+            shareDictionaryData.forEach { key, value in
+                Firestore.createUser(userID: key) { user in
+                    self.getSharePhotos(user: user)
+                }
+            }
+        }
+        
+        
     }
 
-    fileprivate func getSharePhotos(){
-        shares.removeAll()
-        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-        guard let currentUser = currentUser else {
-            return
-        }
+    fileprivate func getSharePhotos(user : User){
 
-        Firestore.firestore().collection("Shares").document(currentUserID).collection("SharePhotos").order(by: "dateTime", descending: false).addSnapshotListener { querySnapshot, err in
+        Firestore.firestore().collection("Shares").document(user.userID).collection("SharePhotos").order(by: "dateTime", descending: false).addSnapshotListener { querySnapshot, err in
             if let err = err {
                 print("Error : ", err.localizedDescription)
                 return
@@ -44,11 +64,14 @@ class HomeCollectionViewController: UICollectionViewController {
             querySnapshot?.documentChanges.forEach({ change in
                 if change.type == .added {
                     let shareData = change.document.data()
-                    let share = SharePhoto(user: currentUser, data: shareData)
+                    let share = SharePhoto(user: user, data: shareData)
                     self.shares.append(share)
                 }
             })
             self.shares.reverse()
+            self.shares.sort { photo1, photo2 in
+                return photo1.dateTime.dateValue().compare(photo2.dateTime.dateValue()) == .orderedDescending
+            }
             self.collectionView.reloadData()
         }
         
@@ -73,9 +96,11 @@ class HomeCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    fileprivate func fetchUser() {
+    fileprivate func fetchUser(userID : String = "") {
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-        Firestore.firestore().collection("Users").document(currentUserID).getDocument { snapshot, err in
+        let uid = userID == "" ? currentUserID : userID
+        
+        Firestore.firestore().collection("Users").document(uid).getDocument { snapshot, err in
             if let err = err {
                 print("Error : ", err)
             }
@@ -83,7 +108,11 @@ class HomeCollectionViewController: UICollectionViewController {
             guard let userData = snapshot?.data() else { return }
             
             self.currentUser = User(userData: userData)
-            self.getSharePhotos()
+            guard let currentUser = self.currentUser else {
+                return
+            }
+
+            self.getSharePhotos(user: currentUser)
         }
     }
     

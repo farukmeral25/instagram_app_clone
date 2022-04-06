@@ -31,6 +31,7 @@
 		66907E5827D245D700207EFF /* UINavigationControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907E5727D245D700207EFF /* UINavigationControllerExtensions.swift */; };
 		66907E5A27D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907E5927D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift */; };
 		66A3067027CD73D5002DA4B8 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3066F27CD73D5002DA4B8 /* LogInViewController.swift */; };
+		7862852927FBA34500F29E9B /* Pods_InstagramApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F483002BEAD67CC7F763D5C /* Pods_InstagramApp.framework */; };
 		786FA62827F87ABE0066D6CF /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786FA62727F87ABE0066D6CF /* HomeCollectionViewController.swift */; };
 		786FA62A27F87BD50066D6CF /* HomeShareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786FA62927F87BD50066D6CF /* HomeShareCollectionViewCell.swift */; };
 		786FA62C27F87CBC0066D6CF /* HomeCollectionViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786FA62B27F87CBC0066D6CF /* HomeCollectionViewControllerExtension.swift */; };
@@ -40,9 +41,10 @@
 		78761C9B27F607F20018CA0D /* SharePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78761C9A27F607F20018CA0D /* SharePhoto.swift */; };
 		78761C9D27F60A540018CA0D /* UserSharePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78761C9C27F60A540018CA0D /* UserSharePhotoCollectionViewCell.swift */; };
 		787ECBAD27F4B08700784A8F /* SharePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787ECBAC27F4B08700784A8F /* SharePhotoViewController.swift */; };
+		7891675C27FD0C5F0045B30B /* FirestoreExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7891675B27FD0C5F0045B30B /* FirestoreExtension.swift */; };
+		7891675E27FD10270045B30B /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7891675D27FD10270045B30B /* DateExtensions.swift */; };
 		78A0264827F24F26001C3AA6 /* PhotoSelectorHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A0264727F24F26001C3AA6 /* PhotoSelectorHeaderCollectionViewCell.swift */; };
 		78DFC54527DCDFCF007A9C60 /* ChoosePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DFC54427DCDFCF007A9C60 /* ChoosePhotoCollectionViewCell.swift */; };
-		D2440199E13BBAB15E233B4E /* Pods_InstagramApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F483002BEAD67CC7F763D5C /* Pods_InstagramApp.framework */; };
 		EC6A8B943A0A036C29355296 /* Pods_InstagramApp_InstagramAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B2F7B8AD3C928528AAE5D9 /* Pods_InstagramApp_InstagramAppUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +107,8 @@
 		78761C9A27F607F20018CA0D /* SharePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhoto.swift; sourceTree = "<group>"; };
 		78761C9C27F60A540018CA0D /* UserSharePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSharePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		787ECBAC27F4B08700784A8F /* SharePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoViewController.swift; sourceTree = "<group>"; };
+		7891675B27FD0C5F0045B30B /* FirestoreExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreExtension.swift; sourceTree = "<group>"; };
+		7891675D27FD10270045B30B /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		78A0264727F24F26001C3AA6 /* PhotoSelectorHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		78DFC54427DCDFCF007A9C60 /* ChoosePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F5D4E063BDF3584E82C6FA8 /* Pods-InstagramApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramApp.release.xcconfig"; path = "Target Support Files/Pods-InstagramApp/Pods-InstagramApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,7 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2440199E13BBAB15E233B4E /* Pods_InstagramApp.framework in Frameworks */,
+				7862852927FBA34500F29E9B /* Pods_InstagramApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +213,8 @@
 				66907E5927D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift */,
 				786FA62B27F87CBC0066D6CF /* HomeCollectionViewControllerExtension.swift */,
 				786FA63127F9B6C00066D6CF /* SearchUserCollectionViewControllerExtension.swift */,
+				7891675B27FD0C5F0045B30B /* FirestoreExtension.swift */,
+				7891675D27FD10270045B30B /* DateExtensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -570,12 +576,14 @@
 				78761C9B27F607F20018CA0D /* SharePhoto.swift in Sources */,
 				787ECBAD27F4B08700784A8F /* SharePhotoViewController.swift in Sources */,
 				66907E5627D2437800207EFF /* ChoosePhotoCollectionViewController.swift in Sources */,
+				7891675C27FD0C5F0045B30B /* FirestoreExtension.swift in Sources */,
 				668D452E27C81BA800788B91 /* ViewControllerExtensions.swift in Sources */,
 				6688DA7027C8D9AB00A8AE8A /* ProfileViewController.swift in Sources */,
 				66A3067027CD73D5002DA4B8 /* LogInViewController.swift in Sources */,
 				66907E5827D245D700207EFF /* UINavigationControllerExtensions.swift in Sources */,
 				786FA63227F9B6C00066D6CF /* SearchUserCollectionViewControllerExtension.swift in Sources */,
 				6641F90027C7992000492650 /* UIColorExtensions.swift in Sources */,
+				7891675E27FD10270045B30B /* DateExtensions.swift in Sources */,
 				6688DA7427C8E52500A8AE8A /* ProfileHeaderCollectionViewCell.swift in Sources */,
 				6688DA7727C8EB9400A8AE8A /* User.swift in Sources */,
 				786FA62F27F9B45D0066D6CF /* SearchUserCollectionViewController.swift in Sources */,
