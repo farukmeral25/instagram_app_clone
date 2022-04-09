@@ -31,6 +31,7 @@
 		66907E5827D245D700207EFF /* UINavigationControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907E5727D245D700207EFF /* UINavigationControllerExtensions.swift */; };
 		66907E5A27D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66907E5927D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift */; };
 		66A3067027CD73D5002DA4B8 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A3066F27CD73D5002DA4B8 /* LogInViewController.swift */; };
+		78368FF42801A18000833E43 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78368FF32801A18000833E43 /* StoryViewController.swift */; };
 		7862852927FBA34500F29E9B /* Pods_InstagramApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F483002BEAD67CC7F763D5C /* Pods_InstagramApp.framework */; };
 		786FA62827F87ABE0066D6CF /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786FA62727F87ABE0066D6CF /* HomeCollectionViewController.swift */; };
 		786FA62A27F87BD50066D6CF /* HomeShareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786FA62927F87BD50066D6CF /* HomeShareCollectionViewCell.swift */; };
@@ -98,6 +99,7 @@
 		66907E5927D24A9400207EFF /* ChoosePhotoCollectionVievControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePhotoCollectionVievControllerExtensions.swift; sourceTree = "<group>"; };
 		66A3066F27CD73D5002DA4B8 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		726A54DD36EB7249F9C5EE7B /* Pods-InstagramAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramAppTests.release.xcconfig"; path = "Target Support Files/Pods-InstagramAppTests/Pods-InstagramAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		78368FF32801A18000833E43 /* StoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
 		786FA62727F87ABE0066D6CF /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
 		786FA62927F87BD50066D6CF /* HomeShareCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeShareCollectionViewCell.swift; sourceTree = "<group>"; };
 		786FA62B27F87CBC0066D6CF /* HomeCollectionViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 		6688DA6A27C8D7D500A8AE8A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				78368FF22801A16A00833E43 /* Story */,
 				786FA62D27F9B42D0066D6CF /* Search */,
 				786FA62427F87A630066D6CF /* Home */,
 				66907E5227D242F700207EFF /* PhotoOperations */,
@@ -277,6 +280,14 @@
 				66A3066F27CD73D5002DA4B8 /* LogInViewController.swift */,
 			);
 			path = Credential;
+			sourceTree = "<group>";
+		};
+		78368FF22801A16A00833E43 /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				78368FF32801A18000833E43 /* StoryViewController.swift */,
+			);
+			path = Story;
 			sourceTree = "<group>";
 		};
 		786FA62427F87A630066D6CF /* Home */ = {
@@ -561,6 +572,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78368FF42801A18000833E43 /* StoryViewController.swift in Sources */,
 				786FA62A27F87BD50066D6CF /* HomeShareCollectionViewCell.swift in Sources */,
 				6641F8D327C78D0600492650 /* SignUpController.swift in Sources */,
 				6641F90227C79A2600492650 /* UIViewExtensions.swift in Sources */,
@@ -770,7 +782,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G8BXSMQ7SR;
+				DEVELOPMENT_TEAM = 776QPK4685;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InstagramApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -802,7 +814,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G8BXSMQ7SR;
+				DEVELOPMENT_TEAM = 776QPK4685;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = InstagramApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

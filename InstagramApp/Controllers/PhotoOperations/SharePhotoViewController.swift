@@ -9,7 +9,7 @@ import UIKit
 import JGProgressHUD
 import Firebase
 class SharePhotoViewController: UIViewController {
-    
+    static let updateNotification = Notification.Name("ShareUpdate")
     var selectedPhoto: UIImage? {
         didSet{
             self.sharedImage.image = selectedPhoto
@@ -111,6 +111,8 @@ class SharePhotoViewController: UIViewController {
             print("The share has been successfully saved.")
             print("Share Document ID: \(ref?.documentID)")
             self.dismiss(animated: true,completion: nil)
+            
+            NotificationCenter.default.post(name: SharePhotoViewController.updateNotification, object: nil)
         })
     }
 

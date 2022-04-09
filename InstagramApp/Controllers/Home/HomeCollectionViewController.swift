@@ -16,6 +16,8 @@ class HomeCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshShareData), name: SharePhotoViewController.updateNotification, object: nil)
         collectionView.backgroundColor = .white
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -32,6 +34,19 @@ class HomeCollectionViewController: UICollectionViewController {
             self.getSharePhotos(user: user)
         }*/
         fetchFollowedUser()
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshShareData), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+
+    @objc
+    fileprivate func refreshShareData() {
+        print("Paylaşım Yenile")
+        shares.removeAll()
+        collectionView.reloadData()
+        fetchFollowedUser()
+        fetchUser()
+         
     }
     
     fileprivate func fetchFollowedUser() {
@@ -57,6 +72,7 @@ class HomeCollectionViewController: UICollectionViewController {
     fileprivate func getSharePhotos(user : User){
 
         Firestore.firestore().collection("Shares").document(user.userID).collection("SharePhotos").order(by: "dateTime", descending: false).addSnapshotListener { querySnapshot, err in
+            self.collectionView.refreshControl?.endRefreshing()
             if let err = err {
                 print("Error : ", err.localizedDescription)
                 return
@@ -80,8 +96,15 @@ class HomeCollectionViewController: UICollectionViewController {
     
     fileprivate func createButtons() {
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "Logo_Instagram2"))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Kamera").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(manageCamera))
     }
     
+    
+    @objc fileprivate func manageCamera() {
+        let cameraController = StoryViewController()
+        cameraController.modalPresentationStyle = .fullScreen
+        present(cameraController, animated: true, completion: nil)
+    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
